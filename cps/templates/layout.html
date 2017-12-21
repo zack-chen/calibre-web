@@ -34,7 +34,15 @@
           </button>
           <!-- <a class="navbar-brand" href="{{url_for('index')}}">{{instance}}</a>  -->
           <a class="navbar-brand" href="http://blog.itczq.com/">{{instance}}</a>
+            <!-- 统计代码 -->
+            <div style="display:none; text-align:center; left:0; right:0; top:0; bottom:0; height:0px; width:0px; margin:auto;">
+                <script type="text/javascript">
+                    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                    document.write(unescape("%3Cspan id='cnzz_stat_icon_1261854677'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1261854677%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+                </script>
+            </div>
         </div>
+
         {% if g.user.is_authenticated or g.user.is_anonymous %}
           <form class="navbar-form navbar-left" role="search" action="{{url_for('search')}}" method="GET">
             <div class="form-group input-group input-group-sm">
