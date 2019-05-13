@@ -5,6 +5,22 @@
   src: local('Grand Hotel'), local('GrandHotel-Regular'), url("fonts/GrandHotel-Regular.ttf") format('truetype');
 }
 
+html.http-error {
+  margin: 0;
+  height: 100%;
+}
+.http-error body {
+  margin: 0;
+  height: 100%;
+  display: table;
+  width: 100%;
+}
+.http-error body > div {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
 body{background:#f2f2f2}body h2{font-weight:normal;color:#444}
 body { margin-bottom: 40px;}
 a{color: #45b29d}a:hover{color: #444;}
@@ -20,6 +36,11 @@ a{color: #45b29d}a:hover{color: #444;}
 .container-fluid .book .meta .title{font-weight:bold;font-size:15px;color:#444}
 .container-fluid .book .meta .author{font-size:12px;color:#999}
 .container-fluid .book .meta .rating{margin-top:5px}.rating .glyphicon-star{color:#999}.rating .glyphicon-star.good{color:#45b29d}
+
+.container-fluid .author .author-hidden, .container-fluid .author .author-hidden-divider {
+  display: none;
+}
+
 .navbar-brand{font-family: 'Grand Hotel', cursive; font-size: 35px; color: #45b29d !important;}
 .more-stuff{margin-top: 20px; padding-top: 20px; border-top: 1px solid #ccc}
 .more-stuff>li{margin-bottom: 10px;}
@@ -36,6 +57,7 @@ span.glyphicon.glyphicon-tags {padding-right: 5px;color: #999;vertical-align: te
     -moz-box-shadow: 0 5px 8px -6px #777;
     box-shadow: 0 5px 8px -6px #777;
 }
+
 .navbar-default .navbar-toggle .icon-bar {background-color: #000;}
 .navbar-default .navbar-toggle {border-color: #000;}
 .cover { margin-bottom: 10px;}
@@ -48,7 +70,7 @@ span.glyphicon.glyphicon-tags {padding-right: 5px;color: #999;vertical-align: te
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary{ background-color: #1C5484; }
 .btn-primary.disabled, .btn-primary[disabled], fieldset[disabled] .btn-primary, .btn-primary.disabled:hover, .btn-primary[disabled]:hover, fieldset[disabled] .btn-primary:hover, .btn-primary.disabled:focus, .btn-primary[disabled]:focus, fieldset[disabled] .btn-primary:focus, .btn-primary.disabled:active, .btn-primary[disabled]:active, fieldset[disabled] .btn-primary:active, .btn-primary.disabled.active, .btn-primary[disabled].active, fieldset[disabled] .btn-primary.active { background-color: #89B9E2; }
 .btn-toolbar>.btn+.btn, .btn-toolbar>.btn-group+.btn, .btn-toolbar>.btn+.btn-group, .btn-toolbar>.btn-group+.btn-group { margin-left:0px; }
-
+.panel-body {background-color: #f5f5f5;}
 .spinner {margin:0 41%;}
 .spinner2 {margin:0 41%;}
 
@@ -87,6 +109,16 @@ input.pill:not(:checked) + label .glyphicon {
 
 .tags_click, .serie_click, .language_click {margin-right: 5px;}
 
+#meta-info {
+    height:600px;
+    overflow-y:scroll;
+}
+.media-list {
+    padding-right:15px;
+}
+.media-body p {
+    text-align: justify;
+}
 #meta-info img { max-height: 150px; max-width: 100px; cursor: pointer; }
 
 .padded-bottom { margin-bottom: 15px; }
@@ -94,5 +126,17 @@ input.pill:not(:checked) + label .glyphicon {
 .upload-format-input-text {display: initial;}
 #btn-upload-format {display: none;}
 
-.upload-format-input-text {display: initial;}
-#btn-upload-format {display: none;}
+.upload-cover-input-text {display: initial;}
+#btn-upload-cover {display: none;}
+
+.panel-title > a { text-decoration: none;}
+
+.editable-buttons { display:inline-block; margin-left: 7px ;}
+.editable-input { display:inline-block;}
+.editable-cancel { margin-bottom: 0px !important; margin-left: 7px !important;}
+.editable-submit { margin-bottom: 0px !important;}
+
+.modal-body .comments {
+    max-height:300px;
+    overflow-y: auto;
+}
