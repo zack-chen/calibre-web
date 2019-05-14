@@ -10,14 +10,18 @@
     </div>
     {% endif %}
     <div class="form-group">
-      <label for="email">{{_('Email address')}}</label>
+      <label for="email">{{_('E-mail address')}}</label>
       <input type="email" class="form-control" name="email" id="email" value="{{ content.email if content.email != None }}" autocomplete="off">
     </div>
     {% if ( g.user and g.user.role_passwd() or g.user.role_admin() ) and not content.role_anonymous() %}
-    <div class="form-group">
-      <label for="password">{{_('Password')}}</label>
-      <input type="password" class="form-control" name="password" id="password" value="" autocomplete="off">
-    </div>
+      {% if g.user and g.user.role_admin() and g.allow_registration and not new_user and not profile %}
+        <div class="btn btn-default" id="resend_password"><a href="{{url_for('reset_password', user_id = content.id) }}">{{_('Reset user Password')}}</a></div>
+      {% else %}
+        <div class="form-group">
+          <label for="password">{{_('Password')}}</label>
+          <input type="password" class="form-control" name="password" id="password" value="" autocomplete="off">
+        </div>
+    {% endif %}
     {% endif %}
     <div class="form-group">
       <label for="kindle_mail">{{_('Kindle E-Mail')}}</label>
@@ -78,9 +82,15 @@
           <label for="show_author">{{_('Show author selection')}}</label>
       </div>
       <div class="form-group">
+          <input type="checkbox" name="show_publisher" id="show_publisher" {% if content.show_publisher() %}checked{% endif %}>
+          <label for="show_publisher">{{_('Show publisher selection')}}</label>
+      </div>
+      {% if not content.role_anonymous() %}
+      <div class="form-group">
           <input type="checkbox" name="show_read_and_unread" id="show_read_and_unread" {% if content.show_read_and_unread() %}checked{% endif %}>
           <label for="show_read_and_unread">{{_('Show read and unread')}}</label>
       </div>
+      {% endif %}
       <div class="form-group">
           <input type="checkbox" name="show_detail_random" id="show_detail_random" {% if content.show_detail_random() %}checked{% endif %}>
           <label for="show_detail_random">{{_('Show random books in detail view')}}</label>
@@ -92,12 +102,12 @@
     <div class="form-group">
       <input type="checkbox" name="admin_role" id="admin_role" {% if content.role_admin() %}checked{% endif %}>
       <label for="admin_role">{{_('Admin user')}}</label>
-    </div>  
+    </div>
+    {% endif %}
     <div class="form-group">
         <input type="checkbox" name="show_mature_content" id="show_mature_content" {% if content.mature_content %}checked{% endif %}>
         <label for="show_mature_content">{{_('Show mature content')}}</label>
     </div>
-    {% endif %}
     <div class="form-group">
       <input type="checkbox" name="download_role" id="download_role" {% if content.role_download() %}checked{% endif %}>
       <label for="download_role">{{_('Allow Downloads')}}</label>
@@ -128,7 +138,7 @@
     {% if g.user and g.user.role_admin() and not profile and not new_user and not content.role_anonymous() %}
       <div class="checkbox">
         <label>
-          <input type="checkbox" name="delete"> {{_('Delete this user')}}
+          <input type="checkbox" id="delete" name="delete"> {{_('Delete this user')}}
         </label>
       </div>
     {% endif %}
@@ -137,8 +147,8 @@
     <button type="submit" id="submit" class="btn btn-default">{{_('Submit')}}</button>
     {% if not profile %}
       <a href="{{ url_for('admin') }}" id="back" class="btn btn-default">{{_('Back')}}</a>
-    </div>
     {% endif %}
+    </div>
   </form>
 
   {% if downloads %}
@@ -147,7 +157,7 @@
     {% for entry in downloads %}
       <div class="col-sm-2">
         <a class="pull-left" href="{{ url_for('show_book', book_id=entry.id) }}">
-          <img class="media-object" width="100" src="{{ url_for('get_cover', cover_path=entry.path.replace('\\','/')) }}" alt="...">
+          <img class="media-object" width="100" src="{{ url_for('get_cover', book_id=entry.id) }}" alt="...">
         </a>
       </div>
     {% endfor %}
